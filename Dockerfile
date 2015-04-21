@@ -4,12 +4,9 @@ ENV KRE_VERSION 1.0.0-beta3
 ENV KVM_USER_HOME /opt/k
 
 RUN apt-get -qq update && apt-get -qqy install \
-    unzip \
-    supervisor \
-    autoconf \
-    automake \
-    build-essential \
-    libtool
+    unzip supervisor autoconf automake build-essential libtool \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /var/lib/dpkg/lists/*
     
 # Install libuv for Kestrel from source code (binary is not in wheezy and one in jessie is still too old)
 RUN LIBUV_VERSION=1.4.1 \
